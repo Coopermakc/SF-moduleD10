@@ -1,17 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.db.models import Q
 from app.models import Car
-from django.template import loader
-from django.shortcuts import redirect, render
-from django.urls import reverse_lazy
 from app.forms import CarForm
 
 from django.views.generic import ListView
 
 
-
-
-PARAMS = ['manufacturer', 'model', 'year', 'transmission', 'color']
 
 class CarList(ListView):
     model = Car
@@ -46,26 +39,3 @@ class CarList(ListView):
         return qs
 
 
-# def index(request):
-#     template = loader.get_template('index.html')
-#     success_url = reverse_lazy('index')
-#     form = CarForm(request.GET)
-#     print(request.GET['manufacturer'])
-    
-#     cars = Car.objects.all()
-#     # if params:
-#     #     for param in params.items():
-#     #         cars = cars.filter(param)
-#     context = {
-#         'cars': cars,
-#         'form': form,
-#     }
-#     return HttpResponse(template.render(context, request))
-    
-
-# def check_params(data):
-#     check = False
-#     for param in PARAMS:
-#         if param in data:
-#             check = True
-#     return check
