@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <head>
+        <title>Catalog</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <br>
+            <form method='get'>
+                {% csrf_token %}
+                {{ form.as_ul }}
+                <input type='submit' value='Filter'>
+            </form>
+            <br>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Производитель</th>
+                        <th scope="col">Модель</th>
+                        <th scope="col">Год выпуска</th>
+                        <th scope="col">Коробка передач</th>
+                        <th scope="col">Цвет</th>
+                    </tr>
+                </thead>
+                {% for car in cars %} 
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ car.manufacturer }}</td>
+                    <td>{{ car.model }}</td>
+                    <td>{{ car.year }}</td>
+                    <td>{{ car.get_transmission_display }}</td>
+                    <td>{{ car.color }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+</html>
